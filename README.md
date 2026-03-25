@@ -24,7 +24,7 @@ See korpus on koostatud veebruaris 2009 Jaapanis Tokio ülikoolis prof Kazuto Ma
 Tekst on jagatud lõikudeks (märgend```<p>```) ja lauseteks (```<s>```).
 Laused on nummerdatud.
 
-Failid on pärit TÜ arvutilingvistika rühma veebilehelt <https://www.cl.ut.ee/korpused/baaskorpus/akp/>
+Failid on pärit TÜ arvutilingvistika rühma veebilehelt <https://cl.ut.ee/korpused/baaskorpus/akp/>
 
 ### tokyo
 
