@@ -1,0 +1,39 @@
+# hfst-xfst skript
+# kompileerimiseks e. muunduri ttt.hfst tegemiseks tee nii:
+# echo 'save stack ttt.hfst' | hfst-xfst -l ttt.xfscript
+
+# kasutamine: echo 'sona' | hfst-lookup -b 0 ttt.hfst
+# (-b 0 tähendab, et väljundisse läheb ainult üks ja kõige tõenäolisem variant)
+# tulemus:    
+#
+# pane muutujad selliseks, et nii diakriitikud kui kaalud jookseksid muunduri-tegemise protsessist ilusti läbi
+set flag-is-epsilon ON
+set encode-weights ON
+
+# võta leksikoni hõlmav analüsaator
+
+read regex @"mrflex.hfst" ;
+
+# eemalda muunduri leksikaalne pool, s.t. lemmad + kategooriad
+# ja jäta alles sõnavormide pool
+upper-side net
+
+# nimeta see muundur fst-ks
+define fst
+
+define suva [?+]::1000 ; # seda saaks kasutada, kui tahan igale sisendile ikka kindlasti tulemust saada
+
+# pane kokku teisendaja ja analüsaatorile tuntud sõnavara
+# 
+
+read regex [ @"teisenda.hfst" .o. fst ];
+
+#read regex [ [ fst ] ];
+
+
+
+
+
+
+
+

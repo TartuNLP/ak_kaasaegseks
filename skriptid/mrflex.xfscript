@@ -1,0 +1,30 @@
+# hfst-xfst skript
+# kuidas tekitasin automaadi, mis tunneb morf leksikoni sõnavorme
+# tegelikult lihtsalt peaaegu ainult kopeerisin oma isiklikust arvutist...
+
+# kompileerimiseks e. muunduri mrflex.hfst tegemiseks tee nii:
+# echo 'save stack mrflex.hfst' | hfst-xfst -l mrflex.xfscript
+
+# kasutamine: echo 'sona' | hfst-lookup -b 0 mrflex.hfst
+# kasutamine: echo 'sona' | hfst-lookup -C composition -b 0 mrflex.hfst
+# (-b 0 tähendab, et väljundisse läheb ainult üks ja kõige tõenäolisem variant)
+#
+# pane muutujad selliseks, et nii diakriitikud kui kaalud jookseksid muunduri-tegemise protsessist ilusti läbi
+set flag-is-epsilon ON
+set encode-weights ON
+
+# võta leksikoni hõlmav analüsaator
+# ja eemalda muunduri leksikaalne pool, s.t. lemmad + kategooriad
+# s.t. jäta alles sõnavormide pool (s.t. "upper side")
+
+# minu isiklikus masinas on see siin kataloogis:
+read regex @"/home/hkaalep/giella2024/lang-est-x-utee/src/fst/analyser-gt-desc.hfst".u ;
+
+
+
+
+
+
+
+
+

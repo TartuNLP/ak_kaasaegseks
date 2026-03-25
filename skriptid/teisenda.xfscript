@@ -1,0 +1,317 @@
+# hfst-xfst skript
+# kompileerimiseks e. muunduri teisenda.hfst tegemiseks tee nii:
+# echo 'save stack teisenda.hfst' | hfst-xfst -l teisenda.xfscript
+# kasutamine: echo 'asutaw' | hfst-lookup teisenda.hfst
+# tulemus:    asutav
+# 
+
+# ainult sellised, mis võivad topelttähena esineda
+define kolmkaheks  [{aaa} (->) {aa}::100] .o.
+                   [{eee} (->) {ee}::100] .o.
+                   [{fff} (->) {ff}::100] .o.
+                   [{hhh} (->) {hh}::100] .o.
+                   [{iii} (->) {ii}::100] .o.
+                   [{kkk} (->) {kk}::100] .o.
+                   [{lll} (->) {ll}::100] .o.
+                   [{mmm} (->) {mm}::100] .o.
+                   [{nnn} (->) {nn}::100] .o.
+                   [{ooo} (->) {oo}::100] .o.
+                   [{ppp} (->) {pp}::100] .o.
+                   [{rrr} (->) {rr}::100] .o.
+                   [{sss} (->) {ss}::100] .o.
+                   [{ttt} (->) {tt}::100] .o.
+                   [{uuu} (->) {uu}::100] .o.
+                   [{vvv} (->) {vv}::100] .o.
+                   [{õõõ} (->) {õõ}::100] .o.
+                   [{äää} (->) {ää}::100] .o.
+                   [{ööö} (->) {öö}::100] .o.
+                   [{üüü} (->) {üü}::100] 
+                    ;
+
+# ainult sellised, mis võivad topelttähena esineda
+define kaksyheks   [{aa} (->) {a}::200] .o.
+                   [{ee} (->) {e}::200] .o.
+                   [{ff} (->) {f}::200] .o.
+                   [{hh} (->) {h}::200] .o.
+                   [{ii} (->) {i}::200] .o.
+                   [{kk} (->) {k}::200] .o.
+                   [{ll} (->) {l}::200] .o.
+                   [{mm} (->) {m}::200] .o.
+                   [{nn} (->) {n}::200] .o.
+                   [{oo} (->) {o}::200] .o.
+                   [{pp} (->) {p}::200] .o.
+                   [{rr} (->) {r}::200] .o.
+                   [{ss} (->) {s}::200] .o.
+                   [{tt} (->) {t}::200] .o.
+                   [{uu} (->) {u}::200] .o.
+                   [{vv} (->) {v}::200] .o.
+                   [{õõ} (->) {õ}::200] .o.
+                   [{ää} (->) {ä}::200] .o.
+                   [{öö} (->) {ö}::200] .o.
+                   [{üü} (->) {ü}::200] 
+                    ;
+
+                    
+# täpitähed võivad igapidi segi olla; kas panna suurem kaal??
+# ei luba teisendada sõnu:
+# kõlb -> kolb , kahe -> kähe
+define tapid [ä (->) a::300] .o.
+             [ö (->) o::300] .o.
+             [õ (->) o::300 || \k _ , _ \l \b] .o.
+             [ü (->) u::300] .o.
+             [ö (->) õ::300] .o.
+             [õ (->) ö::300] .o.
+             [a (->) ä::300 || \k _ , _ \h \e] .o.
+             [o (->) õ::300] .o.
+             [o (->) ö::300] .o.
+             [u (->) ü::300] 
+              ;
+
+# korras sõna(osa)d, mida ei tohiks teisendada, sest teisendades võib tekkida üks teine kah eestikeelne sõna
+#define jubakorras $[{väärt} | {wäärt} | {kahe} | {kõlb}] ;
+
+define muudatapid tapid;
+
+# eesti tähe asemel on mõnikord hoopis...
+define eestitäish  [ï (->) i::10] .o.
+                [À (->) A::10] .o.
+                [à (->) a::10] .o.
+                [é (->) e::10] .o.
+                [ë (->) e::10] .o.
+                [î (->) i::10] .o.
+                [ë (->) ä::10] .o.
+                [ô (->) õ::10] .o.
+                [ç (->) e::10] .o.
+                [è (->) e::10] 
+                ;  
+
+# regulaarsed muutused tuletusliidetes
+# sündmata ei käändu, aga sündmatu peaks; kui asendaks, tekiks ebagramm. lause
+define tuletus [a  (->) e::50  || [k|p|t|l|m|n|r|s][k|p|t|s] _ .#.] .o.
+               [{ismus}   (->) "ism"::50 || ? ? ? ? _ .#.] .o.
+               [{ikus}   (->) "ik"::50 || ? ? ? ? _ .#.] .o.
+               [{ikuse}   (->) {iku}::50 || ? ? ? ? _ .#.] .o.
+               [{ismuse}   (->) {ismi}::50 || ? ? ? ? _ .#.] .o.
+               [{ismust}   (->) {ismi}::50 || ? ? ? ? _ .#.] .o.
+               [{iumisid}   (->) {iume}::10] .o.
+               [{konde}   (->) {kondi}::10 || _ .#.] .o.
+               [{kui}   (->) {ke}::50    || _ [l|s|k]] .o.
+               [{line}  (->) {lik}::50   || ? ? ? ? _ .#.] .o.
+               [{lise}  (->) {liku}::50  || ? ? ? ? _ ] .o.
+               [{list}  (->) {likku}::50 || ? ? ? ? _ .#.] .o.
+               [{liste} (->) {like}::50  || ? ? ? ? _ ] .o.
+               [{lisi}  (->) {likke}::50 || ? ? ? ? _ .#.] .o.
+               [(i) {line}  (->) {ne}::60   || ? ? ? ? _ .#.] .o.
+               [(i) {lise}  (->) {se}::60  || ? ? ? ? _ ] .o.
+               [(i) {lisse}  (->) {sesse}::60  || ? ? ? ? _ ] .o.
+               [(i) {list}  (->) {set}::60 || ? ? ? ? _ .#.] .o.
+               [(i) {liste} (->) {sete}::60  || ? ? ? ? _ ] .o.
+               [(i) {lisi}  (->) {seid}::60 || ? ? ? ? _ .#.] .o.
+               [{lik}  (->) {line}::50   || ? ? ? ? _ .#.] .o.
+               [{liku}  (->) {lise}::50  || ? ? ? ? _ ] .o.
+               [{likku}  (->) {list}::50 || ? ? ? ? _ .#.] .o.
+               [{like} (->) {liste}::50  || ? ? ? ? _ ] .o.
+               [{likke}  (->) {lisi}::50 || ? ? ? ? _ .#.] .o.
+               [{ikude}  (->) {ikkude}::50   || ? ? ? ? _ ] .o.
+               [{ikkude}  (->) {ike}::50   || ? ? ? ? _ ] .o.
+               [{lik}  (->) {ne}::60   || ? ? ? ? _ .#.] .o.
+               [{liku}  (->) {se}::60  || ? ? ? ? _ ] .o.
+               [{likku}  (->) {set}::60 || ? ? ? ? _ .#.] .o.
+               [{likkude}  (->) {sete}::60 || ? ? ? ? _ ] .o.
+               [{like} (->) {sete}::60  || ? ? ? ? _ ] .o.
+               [{likke}  (->) {seid}::60 || ? ? ? ? _ .#.] .o.
+               [{likka}  (->) {seid}::60 || ? ? ? ? _ .#.] .o.
+               [{ikude}  (->) {sete}::60   || ? ? ? ? _ ] .o.
+               [{likuid}  (->) {likke}::50 || ? ? ? ? _ .#.] .o.
+               [{akse}  (->) {atakse}::50 || ? ? ? ? _ .#.] .o.  # parand+akse --> parand+atakse
+               [{mata}  (->) {matu}::50 || _ ({ks}|{le}|{l}|{lt}|{d}) .#. , \s \ü \n \d _ ] .o.
+               [o (l) {leeri}  (->) {olli}::50 || ? ? _ ] .o.   # kontroll*eeri, protokoll*eeri
+               [ü {seeri}  (->) ü ü {si}::50 || ? ? _ ] .o.   # analüseeri -> analüüsi
+               [{nem}  (->) {m}::50 || ? ? _ ]
+               ;
+
+# sagedased üksiksõnad
+# kokkuseade - ei tea, milleks teisendada...
+define sona [{aadel} (->) {aadl}::10] .o.
+            [{Aadel} (->) {Aadl}::10] .o.
+            [{tähelpan} (->) {tähelepan}::10] .o.
+            [{liige} (->) {liikme}::50] .o.
+            [{tehtakse} (->) {tehakse}::10] .o.
+            [{nähtakse} (->) {nähakse}::10] .o.
+            [{paiuk} (->) {pajuk}::10] .o.
+            [{Paiuk} (->) {Pajuk}::10] .o.
+            [{makset} (->) {makst}::10] .o.
+            [{kuidasviisi} (->) {kuidaviisi}::10] .o.
+            [{istangu} (->) {istungi}::10] .o.
+            [{alga} (->) {ala}::50] .o.
+            [{algad} (->) {alat}::50] .o.
+            [{mõisade} (->) {mõisate}::10] .o.
+            [{vastolu} (->) {vastuolu}::10] .o.
+            [{esialgul} (->) {esialgu}::10] .o.
+            [{milgil} (->) {mingil}::10] .o.
+            [{igalühel} (->) {igaühel}::10] .o.
+            [{Igalühel} (->) {Igaühel}::10] .o.
+            [{pe} (->) {ppe}::10 || [õ|Õ] _ ] .o.
+            [{ütelus} (->) {ütlus}::10] .o.
+            [{vististe} (->) {vististi}::10] .o.
+            [{rutulsus} (->) {rutulisus}::10] .o.
+            [{vastolu} (->) {vastuolu}::10] .o.
+            [{otstarb} (->) {otstarve}::10] .o.
+            [{otstarb} (->) {otstarv}::10] .o.
+            [{ühtmeelt} (->) {üksmeelt}::10] .o.
+            [{kohte} (->) {kohti}::10 || _ .#.] .o.
+            [{kompetent} (->) {kompetentne}::10] .o.
+            [{ükspuhas} (->) {ükspuha}::10] .o.
+            [{mitmet} (->) {mitut}::10 || _ .#.] .o.
+            [{sellesamal} (->) {sellelsamal}::10] .o.
+            [{sellesamale} (->) {sellelesamale}::10] .o.
+            [{sellesamas} (->) {sellessamas}::10] .o.
+            [{sellesamasse} (->) {sellessesamasse}::10] .o.
+            [{kaebad} (->) {kaevat}::10] .o.
+            [{pääsis} (->) {pääses}::10] .o.
+            [{iseäraldus} (->) {iseärasus}::10] .o.
+            [{ühede} (->) {ühtede}::10] .o.
+            [{väljaspoole} (->) {väljapoole}::10] .o.
+            [{jäete} (->) {jääte}::10] .o.
+            [{sulutud} (->) {suletud}::10] .o.
+            [{rühmil} (->) {rühmadel}::10] .o.
+            [{dessätiin} (->) {tessatin}::10] .o.
+            [{orgaanide} (->) {organite}::10] .o.
+            [{orgaanisid} (->) {organeid}::10] .o.
+            [{tutvune} (->) {tutvu}::10] .o.
+            [{priviligeeritud} (->) {privilegeeritud}::10] .o.
+            [{teendr} (->) {teenr}::10] .o.
+            [[(m) {misteer} (i) i u (i) m] (->) {ministeerium}::10 || \i _] .o.
+            [{õelik}  (->) {õeline}::50   ||  _ .#.] .o.
+            [{õeliku}  (->) {õelise}::50  ] .o.
+            [{õelikku}  (->) {õelist}::50 ||  _ .#.] .o.
+            [{õelikkuse}  (->) {õelisuse}::50 ] .o.
+            [{õelikkude}  (->) {õeliste}::50  ] .o.
+            [{üldliku}  (->) {üldise}::50  ] .o.
+            [{üldlikkude}  (->) {üldiste}::50  ] .o.
+            [[a w a t (e) l (e)] (->) {ahvatle}::10] .o.
+            [{notaarius} (->) {notar}::10 || _ .#.] .o.
+            [{notaariuse} (->) {notari}::10] .o.
+            [{real} (->) {reaal}::10] .o.
+            [{sahar} (->) {sahhar}::10] .o.
+            [{aegist} (->) {aegset}::10] .o.
+            [{kordist} (->) {kordset}::10] .o.
+            [{nädali} (->) {nädala}::10] .o.
+            [{seadid} (->) {sead}::10] .o.
+            [{seadima} (->) {seadma}::10] .o.
+            [{samuis} (->) {samades}::10] .o.
+            [{ligemis} (->) {ligimes}::10] .o.
+            [{sanitäär} (->) {sanitaar}::10 || _ [a|k|p]] .o.
+            [{sanitäär} (->) {sanitar}::10 || _ \[a|k|p]] .o.
+            [{sanitäär} (->) {sanitar}::10 || _ .#.] .o.
+            [{iiamaalne} (->) {enine}::10 || _  .#.] .o.
+            [{iiamaalse} (->) {enise}::10 || _  (s)] .o.
+            [{iiamaalset} (->) {enist}::10] .o.
+            [{taolsus} (->) {taolisus}::10] .o.
+            [{kokkukõla} (->) {kooskõla}::10] .o.
+            [{börse} (->) {börsi}::10] .o.
+            [{gilde} (->) {gildi}::10] .o.
+            [{pekse} (->) {peks}::10] .o.
+            [{mõlemi} (->) {mõlema}::10] .o.
+            [{eksploa} (->) {eksplua}::10] .o.
+            [{demogoog} (->) {demagoog}::10] .o.
+            [{daanl} (->) {taanl}::10] .o.
+            [{Daan} (->) {Taan}::10] .o.
+            [{iker} (->) {ik}::10 || ? ? ? ? _ .#.] .o.
+            [{ikeri} (->) {iku}::10 || ? ? ? ? _ (d) .#.] .o.
+            [{ikeride} (->) {ikute}::10 || ? ? ? ? _ ] .o.
+            [{ikerisid} (->) {ikuid}::10 || ? ? ? ? _ ] .o.
+            [{iwiteet} (->) {iivsus}::10 || ? ? ? _ .#.] .o.
+            [{aliteet} (->) {aalsus}::10 || ? ? ? _ .#.] .o.
+            [{aniteet} (->) {aansus}::10 || ? ? ? _ .#.] .o.
+            [{aliteet} (->) {aalsus}::10 ||  ? ? ? _ .#.] .o.
+            [{ensiteet} (->) {ensiivsus}::10 || ? ? ? _ .#.] .o.
+            [{iositeet} (->) {ioossus}::10 || ? ? ? ? _ .#.] .o.
+            [{iliteet} (->) {iilsus}::10 ||  ? ? ? _ .#.] .o.
+            [{iwiteeti} (->) {iivsust}::10 || ? ? ? _ .#.] .o.
+            [{aliteeti} (->) {aalsust}::10 || ? ? ? _ .#.] .o.
+            [{aniteeti} (->) {aansust}::10 || ? ? ? _ .#.] .o.
+            [{aliteeti} (->) {aalsust}::10 ||  ? ? ? _ .#.] .o.
+            [{ensiteeti} (->) {ensiivsust}::10 || ? ? ? _ .#.] .o.
+            [{iositeeti} (->) {ioossust}::10 || ? ? ? ? _ .#.] .o.
+            [{iliteeti} (->) {iilsust}::10 ||  ? ? ? _ .#.] .o.
+            [{iwiteedi} (->) {iivsuse}::10 || ? ? ? _ ] .o.
+            [{aliteedi} (->) {aalsuse}::10 || ? ? ? _ ] .o.
+            [{aniteedi} (->) {aansuse}::10 || ? ? ? _ ] .o.
+            [{aliteedi} (->) {aalsuse}::10 ||  ? ? ? _ ] .o.
+            [{ensiteedi} (->) {ensiivsuse}::10 || ? ? ? _ ] .o.
+            [{iositeedi} (->) {ioossuse}::10 || ? ? ? ? _ ] .o.
+            [{iliteedi} (->) {iilsuse}::10 ||  ? ? ? _ .#.] .o.
+            [[ü k s t a (s) p u h a (s)] (->) {ükstapuha}::10] .o.
+            [{alkoholik} (->) {alkohoolik}::10] .o.   # et olla parem kui alkoholik -> alkoholine
+            [{kahepaikus} (->) {kahepaiksus}::10] .o.   # et olla parem kui kahepaikuse -> kahepaiku
+            [{laselik} (->) {laslik}::10] .o.   # et olla parem kui kangelaselik -> kangelaseline
+            [{nõnda} (->) {nii}::100 || _ ? ? ? ? ] .o.  # nõndaöelda jms
+            [{ladu} (->) {lao}::50 || _ [r|k|ü|w|j]] .o.
+            [{kõnekäänu} (->) {kõnekäändu}::100] .o.
+            [{kumbagit} (->) {kumbagi}::100] .o.
+            [{kumba} (->) {kumma}::100] .o.
+            [{kumbat} (->) {kumba}::10 || _ .#.] .o.
+            [{kumbatki} (->) {kumbagi}::10] .o.
+            [{bülletiin} (->) {bülletään}::10] .o.
+            [{bülleteen} (->) {bülletään}::10] .o.
+            [{velsker} (->) {velskr}::10] .o.
+            [{tõenäolikkus} (->) {tõenäolisus}::10] .o.
+            [{tundelik} (->) {tundlik}::10] .o.
+            [{dollarli} (->) {dollarili}::10]
+            ;
+
+# lihtsad täheteisendused vanast tavast tänasesse
+define uustäht   [w (->) v::10] .o. 
+                 [W (->) V::10] .o.
+                 [w (->) f::100] .o. 
+                 [W (->) F::100] .o.
+                 [i (->) ü::300] .o.
+                 [ü (->) i::300] .o.
+                 [i (->) j::100] .o.
+                 [{öi} (->) {eu}::100] .o.
+                 [{hw} (->) f::100] .o. 
+                 [{bt} (->) b::100] .o. 
+                 [s (->) {ss}::10 || [l|m|n|r] _ ] .o. 
+                 [{ns} (->) {nts}::100] .o.
+                 [h (->) {hh}::100] .o. 
+                 [{sh} (->) š::10] .o.
+                 [{Sh} (->) Š::10] .o.
+                 [{sh} (->) ž::10] .o.
+                 [{sh} (->) s::10] .o.
+                 [{Sh} (->) S::10]
+                 ;
+
+define eemaldakriips [{-} (->) ""::30] ;
+                                 
+define sisestusvead [eestitäish .o. 
+                    [{rn} (->) m::100] .o.
+#                    [{nr} (->) m::100] .o.
+                    [{ni} (->) m::100] .o.
+                    [{in} (->) m::100] .o.
+                    [{rm} (->) {nn}::100] .o.
+                    [{li} (->) h::300] .o.
+#                    [ü (->) {ii}::300] .o.
+                    [i (->) l::300] .o.
+                    [I (->) l::300] .o.
+                    [l (->) i::300] .o.
+                    [f (->) i::300] .o.
+                    [l (->) t::300] .o.
+                    [i (->) t::300] .o.
+                    [c (->) e::300] .o.
+                    [s (->) e::300] .o.
+                    [n (->) p::300] .o.
+                    [p (->) u::300] .o.
+#                    kolmkaheks .o. 
+                    muudatapid .o.
+                    eemaldakriips] 
+                    ;
+                 
+define ortograafia [uustäht .o.
+                   kaksyheks]
+                   ;
+#define teisenda [tuletus .o. ortograafia .o. sisestusvead .o. sona] ;
+define teisenda [sisestusvead .o. ortograafia .o. tuletus .o. sona] ;
+
+regex teisenda ;
+
