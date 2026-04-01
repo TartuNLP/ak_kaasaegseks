@@ -2,6 +2,10 @@
 
 Projekt: „Infoeraldus ajalooliste institutsioonide protokollide (1880–1940) näitel“ EKKD-TA10
 
+Terve korpuse teisendamiseks tee `cd skriptid; ./teisenda_ak_nyydseks.h`
+
+Eeldab paketi HFST olemasolu.
+
 ## Failinimed
 
 Failinimed eri kataloogides on vast iseseletuvad ja omavahel kergesti kokku viidavad.
