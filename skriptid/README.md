@@ -10,50 +10,6 @@ Tänapäevase sõnavara muundur mrflex.hfst on kasutusel sõnade teisendamise m�
 Selle saaks teha lähtefailidest, mis on siin: https://github.com/giellalt/lang-est-x-utee
 Seejuures sõnavara on sama, mis vabamorfi (https://github.com/Filosoft/vabamorf) spelleri sõnavara (sest vabamorfi leksikon on giellalt-lehele kopeeritud).
 
-
-## AK algteksti parandamine
-
-Parandamise skriptid on oma töö teinud ja neid pole vaja uuesti käivitada.
-See tähendab, et neist on saanud arhiiv.
-
-### Sisestusvead
-
-    #### Sammud
-
-   1. Tekita alg_tokyo-failidest tollaste sõnavormide sagedusloend 
-
-       Käivita `./uuri_asutava_sonavara.sh`
-        
-       Tulemus: `../sonavara/asutava_soned.mitu` kujul *mitu sõnavorm*
-       
-       Sõnavara suurus on 85 000 sõnavormi.
-       
-   2. Leia üks kord esinevad sõnad, mis erinevad rohkem esinevatest ainult tõenäolise kirjavea poolest; ilmselt nad ongi vead. 
-   
-       Käivita `./leia_sisestusvead.sh`
-        
-       Tulemus: `../sonavara/viga_korras.tab` kujul *vigane@korras*
-
-   3. Asenda vigased sõnad õigetega.
-
-       Käivita `./paranda_sisestusvead.sh`
-       
-       Lähtekataloog: `alg_tokyo`
-
-       Sihtkataloog: `tokyo`
-
-### Poolitusvead
-
-Käivita `paranda_poolitusvead.sh` 
-
-Leiab ja parandab kriipsuga seotud vead: kui pärast sidekriipsu on jäänud tühik panemata, nt. *põhi-ja lisapalga* või on poolitusmärk jäänud eemaldamata, nt *wastu-tusele*.
-
-Eeldab, et on olemas teisendusi ja tänapäevast sõnavara kombineeriv lõplik muundur, vt `./teisenda_sonavara_nyydseks1.sh`
-
-Lähtekataloog: `tokyo`
-
-Sihtkataloog: `uus_tokyo`; sealt tuleb failid käsitsi kopeerida `tokyo`-sse vanade asemele
-
 ## AK sõnavormide kaasajastamine
 
 Käivita `./teisenda_ak_nyydseks.sh`
@@ -131,7 +87,7 @@ Meetod: leia igale korpuse sõnavormile selle tänapäevane vaste (s.t. tegele k
 
 4. Asenda sõnavormid nüüdsetega, kasutades muundurit `aaa.hfstol`
 
-    Käivita `./teisenda_ak_nyydseks.sh`
+    Käivita `./asenda_sonad_nyydsetega.sh`
 
     Lähtekataloog: `tokyo_rv`
 

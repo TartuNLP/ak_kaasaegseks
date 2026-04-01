@@ -57,14 +57,4 @@ paste ../sonavara/asutava_soned.mitu ../vahetulemused/nyydsone.tmp2 \
 
 exit
 
-cat ../sonavara/algne_nyydne.vers3 \
-| sed 's/,000000//g' \
-| gawk '{pik=length($2); if ($4 < 155 && pik > 2 && pik < 5) {if ($4 > 0) {suhe=pik/$4} else {suhe=pik}; printf("%.3f", suhe); print}}'
-
-
-
-
-| sort -k 4 -nr \
-| gawk '{pik=length($2); suhe=pik/$4; if ($4 < 155 && pik > 4) printf("%.3f", suhe); print}' 
- 
 

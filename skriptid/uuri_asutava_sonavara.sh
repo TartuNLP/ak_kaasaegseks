@@ -4,7 +4,7 @@
 
 # kasutamine: olles ise kataloogis skriptid, käivita käsurealt ./uuri_asutava_sõnavara.sh
 
-alg=../uusim_tokyo/
+alg=../tokyo
 sonavara=../sonavara
 
 echo "" > ${sonavara}/asutava_tekst

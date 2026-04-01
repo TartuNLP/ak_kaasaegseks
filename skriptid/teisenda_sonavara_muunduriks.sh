@@ -5,9 +5,6 @@
 # märkide loend on pärit mingist skriptist uuri_sonavara.sh vms...
 
 echo '0123456789.,:;?!"()“”„§\/+#=%½¶¹°˚…＿£—–_«»}*-' \
-| sed 's/./|&/g' \
-
-echo '0123456789.,:;?!"()“”„§\/+#=%½¶¹°˚…＿£—–_«»}*-' \
 | sed 's/./|"&"/g' \
 | sed 's/|/ [/' \
 | sed 's/$/]/' \

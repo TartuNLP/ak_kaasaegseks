@@ -61,15 +61,11 @@ cat ../sonavara/asutava_soned.mitu | sed 's/^  *\([1234567890][1234567890]*\) .*
 # tee teisenduste muundur teisenda.hfst ja ühenda see leksikoniga
 #  seega ttt.hfst teeb teisendused ainult juhul, kui tulemuseks on leksikoni kuuluv sõna
 
-#tegin teisenda.hfst eraldi valmis; jäta uuesti tegemata
-# echo 'save stack teisenda.hfst' | hfst-xfst -l teisenda.xfscript
-#tegin mrflex.hfst eraldi valmis; jäta uuesti tegemata
-# echo 'save stack mrflex.hfst' | hfst-xfst -l mrflex.xfscript
+echo 'save stack teisenda.hfst' | hfst-xfst -l teisenda.xfscript
+echo 'save stack mrflex.hfst' | hfst-xfst -l mrflex.xfscript
 
-#tegin ttt.hfst eraldi valmis; jäta uuesti tegemata
-#echo 'save stack ttt.hfst' | hfst-xfst -l ttt.xfscript
-#tegin ttt.hfstol eraldi valmis; jäta uuesti tegemata
-# cat ttt.hfst | hfst-fst2fst --optimized-lookup-weighted > ttt.hfstol
+echo 'save stack ttt.hfst' | hfst-xfst -l ttt.xfscript
+cat ttt.hfst | hfst-fst2fst --optimized-lookup-weighted > ttt.hfstol
 
 
 # ... ja kasuta
@@ -87,15 +83,6 @@ paste ../sonavara/asutava_soned.mitu ../vahetulemused/nyydsone.tmp1 \
 
 exit
 
-# teisenda ka sõnu, mis ei muutu sellest tänapäevasõnadeks, kuid omandavad siiski tänapäevase ortograafia 
-cat ../vahetulemused/nyydsone.tmp1 \
-| cut -f 2,3 \
-| sed '/inf$/s/w/v/g' \
-| sed "s/'ï/'i/" \
-| cut -f 1 \
-> ../vahetulemused/nyydsone.tmp2
-
-exit
 
 
 
