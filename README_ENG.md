@@ -2,6 +2,8 @@
 
 Project: “Information Extraction on the Example of Minutes of Historical Institutions (1880–1940)” EKKD‑TA10
 
+For contemporizing the whole corpus, do `cd skriptid; ./teisenda_ak_nyydseks.sh`
+
 ## File Names
 
 The file names in the various directories are presumably self‑explanatory and can easily be cross‑referenced.
@@ -18,11 +20,11 @@ The text is divided into paragraphs (```<p>```) and sentences (```<s>```). Sente
 
 The files originate from the University of Tartu Computational Linguistics group website: <https://cl.ut.ee/korpused/baaskorpus/akp/>
 
- [List](nimekiri.md) with more details.
+See [List](nimekiri.md) for more details.
 
 ### tokyo_nyydne (contemporary tokyo)
 
-This is a version of the **tokyo** corpus with contemporized word forms.
+This is a version of the **tokyo** corpus with contemporized word forms; created by script `teisenda_ak_nyydseks.sh`
 
 ### skriptid (scripts)
 

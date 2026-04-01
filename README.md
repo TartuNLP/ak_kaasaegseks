@@ -2,7 +2,7 @@
 
 Projekt: „Infoeraldus ajalooliste institutsioonide protokollide (1880–1940) näitel“ EKKD-TA10
 
-Terve korpuse teisendamiseks tee `cd skriptid; ./teisenda_ak_nyydseks.h`
+Terve korpuse teisendamiseks tee `cd skriptid; ./teisenda_ak_nyydseks.sh`
 
 Eeldab paketi HFST olemasolu.
 
@@ -28,7 +28,7 @@ Täpsem [nimekiri](nimekiri.md)
 
 ### tokyo_nyydne
 
-See on kaasajastatud sõnavormidega versioon **tokyo** korpusest. 
+See on kaasajastatud sõnavormidega versioon **tokyo** korpusest; failid tekitab skript `teisenda_ak_nyydseks.sh`
 
 ### skriptid
 

@@ -14,11 +14,11 @@ set flag-is-epsilon ON
 set encode-weights ON
 
 # võta leksikoni hõlmav analüsaator
+# (mis on tehtud lähtefailidest, mis on siin: https://github.com/giellalt/lang-est-x-utee)
 # ja eemalda muunduri leksikaalne pool, s.t. lemmad + kategooriad
 # s.t. jäta alles sõnavormide pool (s.t. "upper side")
 
-# minu isiklikus masinas on see siin kataloogis:
-read regex @"/home/hkaalep/giella2024/lang-est-x-utee/src/fst/analyser-gt-desc.hfst".u ;
+read regex @"./analyser-gt-desc.hfst".u ;
 
 
 
