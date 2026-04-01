@@ -8,12 +8,7 @@ The file names in the various directories are presumably self‑explanatory and 
 
 ## Directories
 
-### digar
-
-PDF files from Digar: the Constituent Assembly protocols (170 files), plus the tables of contents and appendices of the sessions.
- [List](nimekiri.md) with more details.
-
-### alg_tokyo (initial tokyo)
+### tokyo
 
 This corpus was compiled in February 2009 at the University of Tokyo under the supervision of Prof. Kazuto Matsumura.
 
@@ -23,19 +18,13 @@ The text is divided into paragraphs (```<p>```) and sentences (```<s>```). Sente
 
 The files originate from the University of Tartu Computational Linguistics group website: <https://cl.ut.ee/korpused/baaskorpus/akp/>
 
-### tokyo
-
-This is a corrected version of the alg_tokyo corpus. Input errors have been corrected.
+ [List](nimekiri.md) with more details.
 
 ### tokyo_nyydne (contemporary tokyo)
 
 This is a version of the **tokyo** corpus with contemporized word forms.
 
-### sonavara (vocabulary)
-
-See [asutava_loemind.txt](sonavara/asutava_loemind.txt)
-
 ### skriptid (scripts)
 
-For corpus exploration, correction, modernization, and lemmatization. See [README.md](skriptid/README.md)
+See [README.md](skriptid/README.md)
 
