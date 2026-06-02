@@ -34,3 +34,28 @@ See on kaasajastatud sõnavormidega versioon **tokyo** korpusest; failid tekitab
 
 Vt. [README.md](skriptid/README.md)
 
+
+## Viitamine
+
+> Kaalep, Heiki-Jaan 2026. 
+  *Contemporizing 20-th Century Estonian*.
+  Proceedings of the 4th Workshop on Language Technologies for Historical and Ancient Languages (LT4HALA 2026),
+  lk 400–406
+
+  http://lrec-conf.org/proceedings/lrec2026/workshops/lt4hala/2026.lt4hala-1.0.pdf
+
+bibtex kujul:
+
+```bibtex
+@inproceedings{kaalep2026,
+  title = "Contemporizing 20-th Century Estonian",
+  author = "Kaalep, Heiki-Jaan",
+  booktitle = "Proceedings of the 4th Workshop on Language Technologies for Historical and Ancient Languages (LT4HALA 2026)",
+  publisher = "European Language Resources Association",
+  url = "http://lrec-conf.org/proceedings/lrec2026/workshops/lt4hala/2026.lt4hala-1.0.pdf",
+  pages = "400--406",
+  year = "2026"
+}
+```
+
+
