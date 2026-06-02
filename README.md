@@ -12,6 +12,10 @@ Failinimed eri kataloogides on vast iseseletuvad ja omavahel kergesti kokku viid
 
 ## Kataloogid
 
+### digar
+
+AK protokollid Rahvusraamatukogu digiarhiivist.
+
 ### tokyo
 
 See korpus on koostatud veebruaris 2009 Jaapanis Tokio ülikoolis prof Kazuto Matsumura juhendamisel.

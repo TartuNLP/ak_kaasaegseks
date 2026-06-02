@@ -10,6 +10,10 @@ The file names in the various directories are presumably self‑explanatory and 
 
 ## Directories
 
+### digar
+
+Minutes of CA from the digital archive of Estonian National Library.
+
 ### tokyo
 
 This corpus was compiled in February 2009 at the University of Tokyo under the supervision of Prof. Kazuto Matsumura.
